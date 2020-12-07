@@ -1,0 +1,18 @@
+{layout 'layouts/default.latte'}
+
+{block content}
+  <main>
+    {include 'blocks/intro.latte'}
+
+    <div class="notes">
+      <article class="note" n:foreach="$page->children()->listed()->sortBy('date', 'desc') as $note">
+        <header class="note-header">
+          <a href="{$note->url()}">
+            <h2>{$note->title()}</h2>
+            <time>{$note->date()->toDate('d F Y')}</time>
+          </a>
+        </header>
+      </article>
+    </div>
+  </main>
+{/block}

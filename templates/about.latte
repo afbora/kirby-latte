@@ -1,0 +1,47 @@
+{layout 'layouts/default.latte'}
+
+{block content}
+  <main>
+    {include 'blocks/intro.latte'}
+
+    <div class="layout">
+      <aside>
+        <section>
+          <h2>Address</h2>
+          <div class="text">
+            {$page->address()->kt()|noescape}
+          </div>
+        </section>
+
+        <section>
+          <h2>Email</h2>
+          <div class="text">
+            {html::email($page->email())|noescape}
+          </div>
+        </section>
+
+        <section>
+          <h2>Phone</h2>
+          <div class="text">
+            {html::tel($page->phone())|noescape}
+          </div>
+        </section>
+
+        <section>
+          <h2>On the web</h2>
+          <div class="text">
+            <ul>
+              <li n:foreach="$page->social()->toStructure() as $social">
+                {html::a($social->url(), $social->platform())|noescape}
+              </li>
+            </ul>
+          </div>
+        </section>
+      </aside>
+
+      <div class="text">
+        {$page->text()->kt()|noescape}
+      </div>
+    </div>
+  </main>
+{/block}

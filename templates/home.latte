@@ -1,0 +1,26 @@
+{layout 'layouts/default.latte'}
+
+{block content}
+  <main>
+    {include 'blocks/intro.latte'}
+
+    {if $photographyPage = page('photography')}
+      <ul class="grid">
+        <li n:foreach="$photographyPage->children()->listed() as $album">
+          <a href="{$album->url()}">
+            <figure>
+              {if $cover = $album->cover()}
+                {$cover->resize(1024, 1024)|noescape}
+              {/if}
+              <figcaption>
+                <span>
+                  <span class="example-name">{$album->title()}</span>
+                </span>
+              </figcaption>
+            </figure>
+          </a>
+        </li>
+      </ul>
+    {/if}
+  </main>
+{/block}

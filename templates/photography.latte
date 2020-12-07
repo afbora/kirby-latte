@@ -1,0 +1,20 @@
+{layout 'layouts/default.latte'}
+
+{block content}
+<main>
+  {include 'blocks/intro.latte'}
+
+  <ul class="albums" {attr(['data-even' => $page->children()->listed()->isEven()], ' ')|noescape}>
+    <li n:foreach="$page->children()->listed() as $album">
+      <a href="{$album->url()}">
+        <figure>
+          {if $cover = $album->cover()}
+            {$cover->crop(800, 1000)|noescape}
+          {/if}
+          <figcaption>{$album->title()}</figcaption>
+        </figure>
+      </a>
+    </li>
+  </ul>
+</main>
+{/block}

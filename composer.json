@@ -1,0 +1,41 @@
+{
+  "name": "afbora/kirby-latte",
+  "description": "Enable Latte Template Engine for Kirby 3",
+  "keywords": [
+    "kirby",
+    "kirby-3",
+    "kirby3-plugin",
+    "kirby-plugin",
+    "kirby-latte",
+    "nette",
+    "latte",
+    "template",
+    "template-engine"
+  ],
+  "version": "1.0.0",
+  "type": "kirby-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ahmet Bora",
+      "email": "ahmet.bora@pixelturk.net"
+    }
+  ],
+  "require": {
+    "php": "^7.3",
+    "getkirby/composer-installer": "^1.2",
+    "latte/latte": "^2.9"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "Afbora\\KirbyLatte\\": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}

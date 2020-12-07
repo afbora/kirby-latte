@@ -1,0 +1,37 @@
+{layout 'layouts/default.latte'}
+
+{block content}
+<main class="album">
+  <article>
+
+    <header>
+      {if $cover = $page->cover()}
+      <figure class="album-cover">
+        {$cover->crop(1024, 768)|noescape}
+        <figcaption>
+          <h1>{$page->headline()->or($page->title())}</h1>
+        </figcaption>
+      </figure>
+      {/if}
+    </header>
+
+    <div class="album-text text">
+      {$page->description()->kt()|noescape}
+
+      {if ($page->tags()->isNotEmpty())}
+      <p class="album-tags tags">{$page->tags()|noescape}</p>
+      {/if}
+    </div>
+
+    <ul class="album-gallery" {attr(['data-even' => $gallery->isEven(), 'data-count' => $gallery->count()], ' ')|noescape}>
+      <li n:foreach="$gallery as $image">
+        <figure>
+          <a href="{$image->link()->or($image->url())}">
+            {$image->crop(800, 1000)|noescape}
+          </a>
+        </figure>
+      </li>
+    </ul>
+  </article>
+</main>
+{/block}
